@@ -20,6 +20,7 @@ def genera_contenuto_dispensa():
 2. IL CANTO GREGORIANO E LA NOTAZIONE
 - Origine: Unificazione carolingia (VIII-IX sec.).
 - Evoluzione Scrittura: Neumi in campo aperto -> Diastemazia -> Notazione Quadrata.
+- Principali Neumi: Punctum, Virga, Podatus, Clivis, Scandicus, Climacus, Torculus, Porrectus.
 - Guido d'Arezzo: Invenzione del rigo (tetragramma) e nomi delle note (Ut queant laxis).
 
 3. SVILUPPO DELLA POLIFONIA PRIMITIVA
@@ -109,7 +110,7 @@ st.markdown("""
 with st.sidebar:
     st.header("📜 Area Studio")
     st.markdown("---")
-    st.info("**Obiettivi Didattici:**\n- Distinguere Ordinario e Proprio.\n- Seguire l'evoluzione della notazione.\n- Analizzare il rapporto Sacro/Profano.")
+    st.info("**Obiettivi Didattici:**\n- Distinguere Ordinario e Proprio.\n- Seguire l'evoluzione della notazione.\n- Riconoscere i neumi principali.")
     
     st.download_button(
         label="📥 Scarica Dispensa Completa",
@@ -118,7 +119,7 @@ with st.sidebar:
         mime="text/plain"
     )
     st.divider()
-    st.caption("Versione 2.2 - Notazione e Guido d'Arezzo")
+    st.caption("Versione 2.3 - Tabella dei Neumi")
 
 # --- TITOLO ---
 st.title("📜 La Liturgia e il Canto nel Medioevo")
@@ -166,7 +167,7 @@ with col_g2:
     - **Melismatico**: Lunghe fioriture su una sola sillaba (es. Alleluia).
     """)
 
-# --- NUOVA SEZIONE: EVOLUZIONE DELLA NOTAZIONE ---
+# --- SEZIONE 3: EVOLUZIONE DELLA NOTAZIONE ---
 st.header("3. Evoluzione della Scrittura Musicale")
 st.write("Dall'aiuto mnemonico alla precisione del rigo musicale.")
 
@@ -178,34 +179,47 @@ with col_time:
     st.markdown("""
     <div class="timeline-item">
         <strong>IX - X Secolo: Neumi in "Campo Aperto" (Adiastematici)</strong><br>
-        Segni posti sopra il testo senza linee di riferimento. Indicavano l'andamento della melodia (salire/scendere) ma non l'altezza esatta dei suoni. Servivano come ausilio mnemonico per chi conosceva già il brano.
+        Segni posti sopra il testo senza linee di riferimento. Indicavano l'andamento della melodia ma non l'altezza esatta. Servivano come ausilio mnemonico.
     </div>
     <div class="timeline-item">
-        <strong>X - XI Secolo: Primi segni di Diastemazia</strong><br>
-        Introduzione di linee "a secco" o colorate (una linea rossa per il FA, una gialla per il DO) per fissare almeno alcuni punti di riferimento costanti per l'altezza.
+        <strong>X - XI Secolo: Diastemazia</strong><br>
+        Introduzione di linee colorate (rossa per il FA, gialla per il DO) per fissare punti di riferimento costanti.
     </div>
     <div class="timeline-item">
-        <strong>XI Secolo: Il Tetragramma</strong><br>
-        Guido d'Arezzo sistematizza l'uso del rigo a quattro linee (tetragramma), permettendo di leggere qualsiasi melodia mai sentita prima con precisione assoluta.
-    </div>
-    <div class="timeline-item">
-        <strong>XII - XIII Secolo: Notazione Quadrata</strong><br>
-        Evoluzione grafica dei neumi in forme quadrate e romboidali su tetragramma, tipica dei grandi corali liturgici romani, rimasta in uso fino ad oggi nei libri di canto gregoriano.
+        <strong>XI Secolo: Il Tetragramma (Guido d'Arezzo)</strong><br>
+        Sistematizzazione del rigo a quattro linee, permettendo la lettura di qualsiasi melodia a prima vista.
     </div>
     """, unsafe_allow_html=True)
+
+    # Tabella dei Neumi
+    st.subheader("I Principali Neumi")
+    neumi_df = pd.DataFrame({
+        "Neuma": ["Punctum", "Virga", "Podatus (Pes)", "Clivis", "Scandicus", "Climacus", "Torculus", "Porrectus"],
+        "Descrizione": [
+            "Nota singola isolata (punto)",
+            "Nota singola (indica una nota più alta o accento)",
+            "Due note ascendenti (bassa-alta)",
+            "Due note discendenti (alta-bassa)",
+            "Tre note ascendenti",
+            "Tre note discendenti",
+            "Tre note: bassa-alta-bassa",
+            "Tre note: alta-bassa-alta"
+        ]
+    })
+    st.table(neumi_df)
 
 with col_guido:
     st.markdown("""
     <div class="medieval-container" style="background-color: #f5f5f5; border-left-color: #4e342e;">
         <h3 style="margin-top:0;">Focus: Guido d'Arezzo</h3>
-        <p>Monaco camaldolese e teorico, è considerato il padre della notazione moderna. Le sue innovazioni principali:</p>
+        <p>Monaco camaldolese, padre della notazione moderna:</p>
         <ul>
-            <li><strong>Il Tetragramma:</strong> Il rigo di 4 linee.</li>
-            <li><strong>Solmisazione:</strong> Un sistema per imparare i suoni basato sull'esacordo.</li>
-            <li><strong>Nomi delle note:</strong> Tratti dalle sillabe iniziali dell'Inno a San Giovanni (<i>Ut queant laxis</i>): Ut, Re, Mi, Fa, Sol, La.</li>
-            <li><strong>Mano Guidoniana:</strong> Un metodo mnemonico che usava le falangi della mano per insegnare i suoni agli allievi.</li>
+            <li><strong>Tetragramma:</strong> Rigo di 4 linee.</li>
+            <li><strong>Solmisazione:</strong> Sistema basato sull'esacordo.</li>
+            <li><strong>Nomi delle note:</strong> Dall'Inno <i>Ut queant laxis</i>.</li>
+            <li><strong>Mano Guidoniana:</strong> Metodo mnemonico per insegnare i suoni.</li>
         </ul>
-        <p><i>"Colui che sa cantare solo a orecchio è un animale, non un musicista." (Guido d'Arezzo)</i></p>
+        <p><i>"Colui che sa cantare solo a orecchio è un animale, non un musicista."</i></p>
     </div>
     """, unsafe_allow_html=True)
 
