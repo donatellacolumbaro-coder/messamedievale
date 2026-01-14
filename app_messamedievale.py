@@ -17,35 +17,29 @@ def genera_contenuto_dispensa():
 - Ordinarium (Testi Fissi): Kyrie, Gloria, Credo, Sanctus, Agnus Dei.
 - Proprium (Testi Variabili): Introitus, Graduale, Alleluia/Tractus, Offertorium, Communio.
 
-2. IL CANTO GREGORIANO
-- Origine: Unificazione carolingia (VIII-IX sec.). Canto monodico, a cappella, ritmo libero.
-- Stili: Sillabico (1 nota/sillaba), Neumatico (2-4 note/sillaba), Melismatico (ornato).
+2. IL CANTO GREGORIANO E LA NOTAZIONE
+- Origine: Unificazione carolingia (VIII-IX sec.).
+- Evoluzione Scrittura: Neumi in campo aperto -> Diastemazia -> Notazione Quadrata.
+- Guido d'Arezzo: Invenzione del rigo (tetragramma) e nomi delle note (Ut queant laxis).
 
 3. SVILUPPO DELLA POLIFONIA PRIMITIVA
-- Organum Parallelo: Raddoppio a intervalli di 4ª o 5ª.
-- Organum Melismatico: Note lunghissime al Tenore (tenere), fioriture superiori.
-- Scuola di Notre Dame: Leoninus e Perotinus introducono la misura del tempo.
+- Organum Parallelo, Melismatico e Scuola di Notre Dame (Leoninus/Perotinus).
 
 4. INTEGRAZIONE DEL PROFANO E MESSA CICLICA
-- Cantus Firmus: Melodia di una 'chanson' fissata nel Tenore come impalcatura.
+- Cantus Firmus: Melodia di una 'chanson' fissata nel Tenore.
 - L'Homme Armé: Simbolo di Cristo Soldato.
-- Guillaume de Machaut: Prima messa ciclica unitaria (Messe de Nostre Dame).
-- Guillaume Dufay: Proporzioni matematiche applicate al tema profano.
+- Guillaume de Machaut (Messe de Nostre Dame) e Guillaume Dufay.
 
 5. GLI 8 MODI (OCTOECHOS)
-- Suddivisi in Autentici (dispari) e Plagali (pari) con diverse Finalis e Tenor.
+- Suddivisi in Autentici (dispari) e Plagali (pari).
 """
 
 # --- CSS PER L'ESTETICA "MEDIEVALE" E LEGGIBILITÀ ---
 st.markdown("""
     <style>
-    /* Sfondo generale */
     .main { background-color: #fdf6e3; }
-    
-    /* Titoli */
     .stMarkdown h1, h2, h3 { color: #4e342e; font-family: 'serif'; }
     
-    /* Contenitore giallo chiaro (Sezione 1 e 4) */
     .medieval-container {
         padding: 1.5rem;
         border-radius: 0.8rem;
@@ -56,7 +50,6 @@ st.markdown("""
         box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
     
-    /* Card polifonia (Sezione 3) */
     .poly-card {
         background-color: #ffffff;
         padding: 1.5rem;
@@ -67,7 +60,23 @@ st.markdown("""
         box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
     
-    /* Sezione Scura (Sezione 5) - Ottimizzata per contrasto */
+    .timeline-item {
+        border-left: 2px solid #8d6e63;
+        padding-left: 20px;
+        margin-bottom: 20px;
+        position: relative;
+    }
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -9px;
+        top: 0;
+        width: 16px;
+        height: 16px;
+        background-color: #4e342e;
+        border-radius: 50%;
+    }
+
     .dark-section {
         background-color: #2d1b15;
         color: #f5f5f5;
@@ -77,7 +86,7 @@ st.markdown("""
         border: 1px solid #4e342e;
     }
     .dark-section h3 {
-        color: #ffd54f !important; /* Giallo brillante per risaltare sul marrone scuro */
+        color: #ffd54f !important;
         margin-top: 1.5rem;
     }
     .dark-section p {
@@ -85,7 +94,6 @@ st.markdown("""
         line-height: 1.6;
     }
 
-    /* Box evidenziatore tecnico (Cantus Firmus) */
     .tech-box {
         padding: 1.2rem;
         background-color: #efebe9;
@@ -101,7 +109,7 @@ st.markdown("""
 with st.sidebar:
     st.header("📜 Area Studio")
     st.markdown("---")
-    st.info("**Obiettivi Didattici:**\n- Distinguere Ordinario e Proprio.\n- Comprendere l'evoluzione polifonica.\n- Analizzare il rapporto Sacro/Profano.")
+    st.info("**Obiettivi Didattici:**\n- Distinguere Ordinario e Proprio.\n- Seguire l'evoluzione della notazione.\n- Analizzare il rapporto Sacro/Profano.")
     
     st.download_button(
         label="📥 Scarica Dispensa Completa",
@@ -110,7 +118,7 @@ with st.sidebar:
         mime="text/plain"
     )
     st.divider()
-    st.caption("Versione 2.1 - Ottimizzazione Contrasto")
+    st.caption("Versione 2.2 - Notazione e Guido d'Arezzo")
 
 # --- TITOLO ---
 st.title("📜 La Liturgia e il Canto nel Medioevo")
@@ -158,8 +166,51 @@ with col_g2:
     - **Melismatico**: Lunghe fioriture su una sola sillaba (es. Alleluia).
     """)
 
-# --- SEZIONE 3: SVILUPPO DELLA POLIFONIA ---
-st.header("3. Lo Sviluppo della Polifonia Primitiva")
+# --- NUOVA SEZIONE: EVOLUZIONE DELLA NOTAZIONE ---
+st.header("3. Evoluzione della Scrittura Musicale")
+st.write("Dall'aiuto mnemonico alla precisione del rigo musicale.")
+
+col_time, col_guido = st.columns([2, 1.2])
+
+with col_time:
+    st.subheader("Linea del Tempo della Notazione")
+    
+    st.markdown("""
+    <div class="timeline-item">
+        <strong>IX - X Secolo: Neumi in "Campo Aperto" (Adiastematici)</strong><br>
+        Segni posti sopra il testo senza linee di riferimento. Indicavano l'andamento della melodia (salire/scendere) ma non l'altezza esatta dei suoni. Servivano come ausilio mnemonico per chi conosceva già il brano.
+    </div>
+    <div class="timeline-item">
+        <strong>X - XI Secolo: Primi segni di Diastemazia</strong><br>
+        Introduzione di linee "a secco" o colorate (una linea rossa per il FA, una gialla per il DO) per fissare almeno alcuni punti di riferimento costanti per l'altezza.
+    </div>
+    <div class="timeline-item">
+        <strong>XI Secolo: Il Tetragramma</strong><br>
+        Guido d'Arezzo sistematizza l'uso del rigo a quattro linee (tetragramma), permettendo di leggere qualsiasi melodia mai sentita prima con precisione assoluta.
+    </div>
+    <div class="timeline-item">
+        <strong>XII - XIII Secolo: Notazione Quadrata</strong><br>
+        Evoluzione grafica dei neumi in forme quadrate e romboidali su tetragramma, tipica dei grandi corali liturgici romani, rimasta in uso fino ad oggi nei libri di canto gregoriano.
+    </div>
+    """, unsafe_allow_html=True)
+
+with col_guido:
+    st.markdown("""
+    <div class="medieval-container" style="background-color: #f5f5f5; border-left-color: #4e342e;">
+        <h3 style="margin-top:0;">Focus: Guido d'Arezzo</h3>
+        <p>Monaco camaldolese e teorico, è considerato il padre della notazione moderna. Le sue innovazioni principali:</p>
+        <ul>
+            <li><strong>Il Tetragramma:</strong> Il rigo di 4 linee.</li>
+            <li><strong>Solmisazione:</strong> Un sistema per imparare i suoni basato sull'esacordo.</li>
+            <li><strong>Nomi delle note:</strong> Tratti dalle sillabe iniziali dell'Inno a San Giovanni (<i>Ut queant laxis</i>): Ut, Re, Mi, Fa, Sol, La.</li>
+            <li><strong>Mano Guidoniana:</strong> Un metodo mnemonico che usava le falangi della mano per insegnare i suoni agli allievi.</li>
+        </ul>
+        <p><i>"Colui che sa cantare solo a orecchio è un animale, non un musicista." (Guido d'Arezzo)</i></p>
+    </div>
+    """, unsafe_allow_html=True)
+
+# --- SEZIONE 4: SVILUPPO DELLA POLIFONIA ---
+st.header("4. Lo Sviluppo della Polifonia Primitiva")
 st.write("Come la musica è passata da una singola linea melodica a strutture complesse.")
 
 c1, c2, c3 = st.columns(3)
@@ -170,8 +221,8 @@ with c2:
 with c3:
     st.markdown('<div class="poly-card"><b>Scuola di Notre Dame (XIII sec.)</b><br><br>Leoninus e Perotinus introducono la misura del tempo e polifonie a 3 e 4 voci indipendenti.</div>', unsafe_allow_html=True)
 
-# --- SEZIONE 4: INTEGRAZIONE DEL PROFANO ---
-st.header("4. Il Sacro e il Profano: Chansons e Messe")
+# --- SEZIONE 5: INTEGRAZIONE DEL PROFANO ---
+st.header("5. Il Sacro e il Profano: Chansons e Messe")
 col_p1, col_p2 = st.columns([2, 1])
 
 with col_p1:
@@ -191,8 +242,8 @@ with col_p2:
     st.subheader("La Tecnica")
     st.markdown('<div class="tech-box"><b>Cantus Firmus</b>: La melodia profana viene <b>fissata</b> nel <b>Tenor</b> a note lunghe. Questa voce funge da spina dorsale per l\'intera composizione.</div>', unsafe_allow_html=True)
 
-# --- SEZIONE 5: I GRANDI MAESTRI ---
-st.header("5. I Maestri della Messa Ciclica")
+# --- SEZIONE 6: I GRANDI MAESTRI ---
+st.header("6. I Maestri della Messa Ciclica")
 
 st.markdown("""
 <div class="dark-section">
@@ -206,8 +257,8 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# --- SEZIONE 6: MODI GREGORIANI ---
-st.header("6. Il Sistema dell'Octoechos (8 Modi)")
+# --- SEZIONE 7: MODI GREGORIANI ---
+st.header("7. Il Sistema dell'Octoechos (8 Modi)")
 modi_data = {
     "N.": [1, 2, 3, 4, 5, 6, 7, 8],
     "Nome": ["Protus Aut.", "Protus Plag.", "Deuterus Aut.", "Deuterus Plag.", "Tritus Aut.", "Tritus Plag.", "Tetrardus Aut.", "Tetrardus Plag."],
