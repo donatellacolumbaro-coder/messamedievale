@@ -1,10 +1,12 @@
+# -*- coding: utf-8 -*-
 import streamlit as st
 import pandas as pd
 
 # 1. Configurazione obbligatoria (Deve essere la prima istruzione)
+# Rimosse emoji per compatibilità totale con i server Streamlit
 st.set_page_config(
     page_title="La Liturgia Medievale: Guida Completa",
-    page_icon="📜",
+    page_icon="S",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -20,19 +22,20 @@ def genera_contenuto_dispensa():
 2. IL CANTO GREGORIANO E LA NOTAZIONE
 - Origine: Unificazione carolingia (VIII-IX sec.).
 - Evoluzione Scrittura: Neumi in campo aperto -> Diastemazia -> Notazione Quadrata.
-- Principali Neumi: Punctum, Virga, Podatus, Clivis, Scandicus, Climacus, Torculus, Porrectus.
-- Guido d'Arezzo: Invenzione del rigo (tetragramma) e nomi delle note (Ut queant laxis).
+- Scuole Regionali: Sangallese, Francese, Aquitana, Beneventana, Gotica.
+- Principali Neumi: Punctum, Virga, Pes, Clivis, Scandicus, Climacus, Torculus, Porrectus, ecc.
+- Guido d'Arezzo: Tetragramma e nomi delle note.
 
-3. SVILUPPO DELLA POLIFONIA PRIMITIVA
-- Organum Parallelo, Melismatico e Scuola di Notre Dame (Leoninus/Perotinus).
+3. ESEMPIO PRATICO: KYRIE ORBIS FACTOR
+- Analisi della notazione quadrata e dello stile melismatico.
 
-4. INTEGRAZIONE DEL PROFANO E MESSA CICLICA
-- Cantus Firmus: Melodia di una 'chanson' fissata nel Tenore.
-- L'Homme Armé: Simbolo di Cristo Soldato.
-- Guillaume de Machaut (Messe de Nostre Dame) e Guillaume Dufay.
+4. SVILUPPO DELLA POLIFONIA PRIMITIVA
+- Organum Parallelo, Melismatico e Scuola di Notre Dame.
 
-5. GLI 8 MODI (OCTOECHOS)
-- Suddivisi in Autentici (dispari) e Plagali (pari).
+5. INTEGRAZIONE DEL PROFANO E MESSA CICLICA
+- Cantus Firmus, L'Homme Armé, Machaut e Dufay.
+
+6. GLI 8 MODI (OCTOECHOS)
 """
 
 # --- CSS PER L'ESTETICA "MEDIEVALE" E LEGGIBILITÀ ---
@@ -67,16 +70,6 @@ st.markdown("""
         margin-bottom: 20px;
         position: relative;
     }
-    .timeline-item::before {
-        content: '';
-        position: absolute;
-        left: -9px;
-        top: 0;
-        width: 16px;
-        height: 16px;
-        background-color: #4e342e;
-        border-radius: 50%;
-    }
 
     .dark-section {
         background-color: #2d1b15;
@@ -89,10 +82,6 @@ st.markdown("""
     .dark-section h3 {
         color: #ffd54f !important;
         margin-top: 1.5rem;
-    }
-    .dark-section p {
-        color: #eceff1;
-        line-height: 1.6;
     }
 
     .tech-box {
@@ -108,21 +97,21 @@ st.markdown("""
 
 # --- SIDEBAR ---
 with st.sidebar:
-    st.header("📜 Area Studio")
+    st.header("Area Studio")
     st.markdown("---")
-    st.info("**Obiettivi Didattici:**\n- Distinguere Ordinario e Proprio.\n- Seguire l'evoluzione della notazione.\n- Riconoscere i neumi principali.")
+    st.info("**Obiettivi Didattici:**\n- Distinguere Ordinario e Proprio.\n- Evoluzione della notazione e scuole regionali.\n- Analizzare il Kyrie 'Orbis Factor'.")
     
     st.download_button(
-        label="📥 Scarica Dispensa Completa",
+        label="Scarica Dispensa Completa",
         data=genera_contenuto_dispensa(),
         file_name="dispensa_messa_medievale.txt",
         mime="text/plain"
     )
     st.divider()
-    st.caption("Versione 2.3 - Tabella dei Neumi")
+    st.caption("Versione 2.5 - Integrazione Scuole Regionali")
 
 # --- TITOLO ---
-st.title("📜 La Liturgia e il Canto nel Medioevo")
+st.title("La Liturgia e il Canto nel Medioevo")
 st.markdown("#### *Dalla Monodia Gregoriana alla Polifonia Fiamminga*")
 st.divider()
 
@@ -130,7 +119,7 @@ st.divider()
 st.header("1. La Struttura della Messa")
 st.markdown('<div class="medieval-container">La Messa si divide in due cicli: l\'<b>Ordinarium</b> (testi fissi immutabili) e il <b>Proprium</b> (testi variabili secondo la festa del giorno).</div>', unsafe_allow_html=True)
 
-tab_ord, tab_prop = st.tabs(["🏛️ Ordinarium Missae", "📅 Proprium Missae"])
+tab_ord, tab_prop = st.tabs(["Ordinarium Missae", "Proprium Missae"])
 
 with tab_ord:
     df_ord = pd.DataFrame({
@@ -169,42 +158,43 @@ with col_g2:
 
 # --- SEZIONE 3: EVOLUZIONE DELLA NOTAZIONE ---
 st.header("3. Evoluzione della Scrittura Musicale")
-st.write("Dall'aiuto mnemonico alla precisione del rigo musicale.")
-
 col_time, col_guido = st.columns([2, 1.2])
 
 with col_time:
     st.subheader("Linea del Tempo della Notazione")
-    
     st.markdown("""
     <div class="timeline-item">
-        <strong>IX - X Secolo: Neumi in "Campo Aperto" (Adiastematici)</strong><br>
-        Segni posti sopra il testo senza linee di riferimento. Indicavano l'andamento della melodia ma non l'altezza esatta. Servivano come ausilio mnemonico.
+        <strong>IX - X Secolo: Neumi in "Campo Aperto"</strong><br>
+        Segni posti sopra il testo senza linee di riferimento. Servivano come ausilio mnemonico.
     </div>
     <div class="timeline-item">
         <strong>X - XI Secolo: Diastemazia</strong><br>
-        Introduzione di linee colorate (rossa per il FA, gialla per il DO) per fissare punti di riferimento costanti.
+        Introduzione di linee colorate (rossa per il FA, gialla per il DO).
     </div>
     <div class="timeline-item">
-        <strong>XI Secolo: Il Tetragramma (Guido d'Arezzo)</strong><br>
-        Sistematizzazione del rigo a quattro linee, permettendo la lettura di qualsiasi melodia a prima vista.
+        <strong>XI Secolo: Il Tetragramma</strong><br>
+        Sistematizzazione del rigo a quattro linee da parte di Guido d'Arezzo.
     </div>
     """, unsafe_allow_html=True)
 
-    # Tabella dei Neumi
-    st.subheader("I Principali Neumi")
-    neumi_df = pd.DataFrame({
-        "Neuma": ["Punctum", "Virga", "Podatus (Pes)", "Clivis", "Scandicus", "Climacus", "Torculus", "Porrectus"],
-        "Descrizione": [
-            "Nota singola isolata (punto)",
-            "Nota singola (indica una nota più alta o accento)",
-            "Due note ascendenti (bassa-alta)",
-            "Due note discendenti (alta-bassa)",
-            "Tre note ascendenti",
-            "Tre note discendenti",
-            "Tre note: bassa-alta-bassa",
-            "Tre note: alta-bassa-alta"
+    # Tabella Comparativa Scuole Regionali (Basata sull'immagine fornita)
+    st.subheader("Confronto tra Scuole Regionali di Notazione")
+    scuole_df = pd.DataFrame({
+        "Scuola": ["Sangallese", "Aquitana", "Beneventana", "Gotica (Hufnagel)", "Quadrata"],
+        "Caratteristiche Grafiche": [
+            "Segni sottili e corsivi, alta precisione ritmica, senza rigo.",
+            "Notazione 'a punti' (punti staccati), precorritrice della diastemazia.",
+            "Tratti spessi e inclinati, tipica dell'area di Montecassino.",
+            "Segni simili a chiodi da maniscalco (ferri di cavallo), area germanica.",
+            "Note a forma di quadrato su tetragramma, standard liturgico finale."
         ]
+    })
+    st.table(scuole_df)
+
+    st.subheader("I Principali Neumi (Semplici e Composti)")
+    neumi_df = pd.DataFrame({
+        "Neuma": ["Punctum / Virga", "Pes (Podatus)", "Clivis", "Scandicus / Climacus", "Torculus / Porrectus", "Pes subbipunctis", "Torculus resupinus"],
+        "Movimento Melodico": ["Nota singola", "Ascendente (2 note)", "Discendente (2 note)", "3 note (Asc. / Disc.)", "3 note (B-A-B / A-B-A)", "4 note (1 acuta + 3 gravi)", "4 note (B-A-B-A)"]
     })
     st.table(neumi_df)
 
@@ -212,80 +202,79 @@ with col_guido:
     st.markdown("""
     <div class="medieval-container" style="background-color: #f5f5f5; border-left-color: #4e342e;">
         <h3 style="margin-top:0;">Focus: Guido d'Arezzo</h3>
-        <p>Monaco camaldolese, padre della notazione moderna:</p>
+        <p>Monaco teorico, inventore del rigo e della solmisazione:</p>
         <ul>
             <li><strong>Tetragramma:</strong> Rigo di 4 linee.</li>
-            <li><strong>Solmisazione:</strong> Sistema basato sull'esacordo.</li>
-            <li><strong>Nomi delle note:</strong> Dall'Inno <i>Ut queant laxis</i>.</li>
-            <li><strong>Mano Guidoniana:</strong> Metodo mnemonico per insegnare i suoni.</li>
+            <li><strong>Inno a S. Giovanni:</strong> Ut, Re, Mi, Fa, Sol, La.</li>
+            <li><strong>Mano Guidoniana:</strong> Metodo mnemonico per l'insegnamento.</li>
         </ul>
-        <p><i>"Colui che sa cantare solo a orecchio è un animale, non un musicista."</i></p>
     </div>
     """, unsafe_allow_html=True)
 
-# --- SEZIONE 4: SVILUPPO DELLA POLIFONIA ---
-st.header("4. Lo Sviluppo della Polifonia Primitiva")
-st.write("Come la musica è passata da una singola linea melodica a strutture complesse.")
+# --- SEZIONE 4: ESEMPIO PRATICO KYRIE ---
+st.divider()
+st.header("Esempio Pratico: Kyrie 'Orbis Factor' (Mass XI)")
+col_vid, col_txt = st.columns([1.5, 1])
 
+with col_vid:
+    st.video("https://www.youtube.com/watch?v=3RCH_G03z6M")
+    st.caption("Esecuzione del Kyrie Orbis Factor con notazione quadrata originale.")
+
+with col_txt:
+    st.markdown("""
+    <div class="tech-box">
+        <strong>Analisi dell'Esempio:</strong><br><br>
+        Il <b>Kyrie Orbis Factor</b> mostra la transizione alla <b>notazione quadrata</b>:<br>
+        <ul>
+            <li><b>Custos:</b> Il piccolo segno a fine rigo che anticipa la nota successiva.</li>
+            <li><b>Alterazioni:</b> Uso del <i>B-mollis</i> (si bemolle) indicato nel rigo.</li>
+            <li><b>Melismi:</b> Grandi gruppi di neumi su sillabe come la 'e' di Kyrie.</li>
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
+
+# --- SEZIONE 5: SVILUPPO DELLA POLIFONIA ---
+st.header("4. Lo Sviluppo della Polifonia Primitiva")
 c1, c2, c3 = st.columns(3)
 with c1:
-    st.markdown('<div class="poly-card"><b>Organum Parallelo (IX sec.)</b><br><br>La forma più antica. Una seconda voce segue la melodia gregoriana a distanza di 4ª o 5ª costante.</div>', unsafe_allow_html=True)
+    st.markdown('<div class="poly-card"><b>Organum Parallelo</b><br><br>Raddoppio della melodia a distanza di 4ª o 5ª costante.</div>', unsafe_allow_html=True)
 with c2:
-    st.markdown('<div class="poly-card"><b>Organum Melismatico (XII sec.)</b><br><br>Tipico di San Marziale. Il Tenore tiene note lunghissime del gregoriano, mentre la voce superiore "vola" con melismi.</div>', unsafe_allow_html=True)
+    st.markdown('<div class="poly-card"><b>Organum Melismatico</b><br><br>Tenore a note lunghe, voce superiore con melismi liberi.</div>', unsafe_allow_html=True)
 with c3:
-    st.markdown('<div class="poly-card"><b>Scuola di Notre Dame (XIII sec.)</b><br><br>Leoninus e Perotinus introducono la misura del tempo e polifonie a 3 e 4 voci indipendenti.</div>', unsafe_allow_html=True)
+    st.markdown('<div class="poly-card"><b>Scuola di Notre Dame</b><br><br>Introduzione del ritmo misurato (Leoninus e Perotinus).</div>', unsafe_allow_html=True)
 
-# --- SEZIONE 5: INTEGRAZIONE DEL PROFANO ---
+# --- SEZIONE 6: INTEGRAZIONE DEL PROFANO ---
 st.header("5. Il Sacro e il Profano: Chansons e Messe")
 col_p1, col_p2 = st.columns([2, 1])
 
 with col_p1:
     st.subheader("L'uso delle Chansons nella Messa")
-    st.write("""
-    Dal XV secolo, i compositori iniziano a usare melodie di **chansons** popolari come fondamento per le Messe. 
-    Questa pratica garantiva unità strutturale e permetteva di omaggiare i committenti tramite il simbolismo.
-    """)
-    with st.expander("La Giustificazione Teologica (Allegoria)"):
-        st.write("""
-        L'uso di testi d'amore o di guerra era accettato tramite l'allegoria:
-        - **Dufay**: Il "pallore d'amore" della chanson veniva associato al pallore di Cristo durante la Passione.
-        - **L'Homme Armé**: Il guerriero diventava l'immagine di Cristo Soldato che trionfa sulla morte.
-        """)
+    st.write("Dal XV secolo, l'uso del **Cantus Firmus** profano permetteva coesione strutturale e simbolismo teologico (es. L'Homme Armé).")
 
 with col_p2:
-    st.subheader("La Tecnica")
-    st.markdown('<div class="tech-box"><b>Cantus Firmus</b>: La melodia profana viene <b>fissata</b> nel <b>Tenor</b> a note lunghe. Questa voce funge da spina dorsale per l\'intera composizione.</div>', unsafe_allow_html=True)
+    st.markdown('<div class="tech-box"><b>Cantus Firmus</b>: Melodia profana <b>fissata</b> nel <b>Tenor</b> a note lunghe.</div>', unsafe_allow_html=True)
 
-# --- SEZIONE 6: I GRANDI MAESTRI ---
+# --- SEZIONE 7: I GRANDI MAESTRI ---
 st.header("6. I Maestri della Messa Ciclica")
-
 st.markdown("""
 <div class="dark-section">
-    <h3>Guillaume de Machaut: La Messa Ciclica</h3>
-    <p>Con la <b>Messe de Nostre Dame</b> (1365), Machaut crea il primo ciclo completo dell'Ordinario concepito come opera unitaria. 
-    Utilizza la tecnica dell'<b>Isoritmia</b> per legare i movimenti matematicamente e stilisticamente.</p>
+    <h3>Guillaume de Machaut</h3>
+    <p>Messe de Nostre Dame (1365): prima messa ciclica unitaria basata sull'Isoritmia.</p>
     <hr style='border-color: #5d4037; margin: 1.5rem 0;'>
-    <h3>Guillaume Dufay e "L'homme armé"</h3>
-    <p>Dufay consacra la melodia profana più famosa del secolo. Nella sua Messa, il tema de <i>L'homme armé</i> 
-    compare nel Tenore con diverse <b>proporzioni ritmiche</b>, creando un'accelerazione progressiva verso l'Agnus Dei.</p>
+    <h3>Guillaume Dufay</h3>
+    <p>Missa L'homme armé: applicazione di proporzioni ritmiche matematiche al tema profano nel Tenore.</p>
 </div>
 """, unsafe_allow_html=True)
 
-# --- SEZIONE 7: MODI GREGORIANI ---
+# --- SEZIONE 8: MODI GREGORIANI ---
 st.header("7. Il Sistema dell'Octoechos (8 Modi)")
 modi_data = {
     "N.": [1, 2, 3, 4, 5, 6, 7, 8],
     "Nome": ["Protus Aut.", "Protus Plag.", "Deuterus Aut.", "Deuterus Plag.", "Tritus Aut.", "Tritus Plag.", "Tetrardus Aut.", "Tetrardus Plag."],
     "Finalis": ["Re", "Re", "Mi", "Mi", "Fa", "Fa", "Sol", "Sol"],
-    "Tenor (Repercussio)": ["La", "Fa", "Do", "La", "Do", "La", "Re", "Do"]
+    "Tenor": ["La", "Fa", "Do", "La", "Do", "La", "Re", "Do"]
 }
 st.dataframe(pd.DataFrame(modi_data), hide_index=True, use_container_width=True)
 
-with st.expander("Visualizza l'Ethos (Carattere) dei Modi"):
-    st.write("""
-    1. **Grave** (Maestà) | 2. **Triste** (Umiltà) | 3. **Ardente** (Severità) | 4. **Lusinghiero** (Dolcezza) | 
-    5. **Lieto** (Gioia) | 6. **Devoto** (Sobrietà) | 7. **Angelico** (Forza) | 8. **Perfetto** (Equilibrio)
-    """)
-
 st.divider()
-st.caption("Risorsa didattica sulla Musica Medievale e Fiamminga - Analisi Formale e Storica.")
+st.caption("Risorsa didattica sulla Musica Medievale - Analisi Formale e Storica.")
