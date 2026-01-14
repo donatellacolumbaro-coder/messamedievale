@@ -35,6 +35,7 @@ def genera_contenuto_dispensa():
 - Cantus Firmus, L'Homme Armé, Machaut e Dufay.
 
 6. GLI 8 MODI (OCTOECHOS)
+- Suddivisi in Autentici (dispari) e Plagali (pari) con i nomi greci e moderni.
 """
 
 # --- CSS PER L'ESTETICA "MEDIEVALE" E LEGGIBILITÀ ---
@@ -98,7 +99,7 @@ st.markdown("""
 with st.sidebar:
     st.header("Area Studio")
     st.markdown("---")
-    st.info("**Obiettivi Didattici:**\n- Distinguere Ordinario e Proprio.\n- Evoluzione della notazione e scuole regionali.\n- Analizzare il Kyrie 'Orbis Factor'.")
+    st.info("**Obiettivi Didattici:**\n- Distinguere Ordinario e Proprio.\n- Evoluzione della notazione e scuole regionali.\n- Analizzare l'Octoechos con nomi moderni.")
     
     st.download_button(
         label="Scarica Dispensa Completa",
@@ -107,7 +108,7 @@ with st.sidebar:
         mime="text/plain"
     )
     st.divider()
-    st.caption("Versione 2.6 - Rimozione video e ottimizzazione")
+    st.caption("Versione 2.7 - Reintegro nomi modi (Dorico ecc.)")
 
 # --- TITOLO ---
 st.title("La Liturgia e il Canto nel Medioevo")
@@ -210,20 +211,19 @@ with col_guido:
     </div>
     """, unsafe_allow_html=True)
 
-# --- NUOVA SEZIONE: ESEMPIO PRATICO KYRIE ---
+# --- SEZIONE ESEMPIO PRATICO KYRIE ---
 st.divider()
 st.header("Esempio Pratico: Kyrie 'Orbis Factor' (Mass XI)")
 
 st.markdown("""
 <div class="tech-box">
     <strong>Analisi Tecnica dell'Esempio:</strong><br><br>
-    Il <b>Kyrie Orbis Factor</b> è uno degli esempi più celebri di stile <i>melismatico</i> e illustra perfettamente la maturità della <b>notazione quadrata</b> su tetragramma:<br>
+    Il <b>Kyrie Orbis Factor</b> illustra perfettamente la maturità della <b>notazione quadrata</b> su tetragramma:<br>
     <ul>
-        <li><b>Melismi:</b> Grandi gruppi di neumi concentrati su singole sillabe (particolarmente sulla 'e' di Kyrie), che creano una linea melodica ricca e ornata.</li>
-        <li><b>Custos:</b> Il piccolo segno posto alla fine di ogni rigo che anticipa visivamente la posizione della prima nota del rigo successivo, aiutando la continuità del canto.</li>
-        <li><b>Alterazioni:</b> L'uso del <i>B-mollis</i> (il Si bemolle), l'unica alterazione ammessa nel gregoriano, indicata graficamente nel tetragramma per evitare l'intervallo di quarta eccedente (tritono).</li>
-        <li><b>Chiavi:</b> La presenza delle chiavi di DO o FA all'inizio del rigo che fissano in modo univoco l'altezza dei suoni.</li>
-        <li><b>Struttura:</b> Le barre verticali che dividono le sezioni (Kyrie, Christe, Kyrie) e indicano i momenti di pausa e respiro liturgico.</li>
+        <li><b>Melismi:</b> Grandi gruppi di neumi concentrati su singole sillabe, che creano una linea melodica ricca e ornata.</li>
+        <li><b>Custos:</b> Il piccolo segno a fine rigo che anticipa la posizione della prima nota del rigo successivo.</li>
+        <li><b>Alterazioni:</b> L'uso del <i>B-mollis</i> (Si bemolle), l'unica alterazione ammessa nel gregoriano.</li>
+        <li><b>Chiavi:</b> Presenza delle chiavi di DO o FA all'inizio del rigo per fissare l'altezza dei suoni.</li>
     </ul>
 </div>
 """, unsafe_allow_html=True)
@@ -265,7 +265,8 @@ st.markdown("""
 st.header("7. Il Sistema dell'Octoechos (8 Modi)")
 modi_data = {
     "N.": [1, 2, 3, 4, 5, 6, 7, 8],
-    "Nome": ["Protus Aut.", "Protus Plag.", "Deuterus Aut.", "Deuterus Plag.", "Tritus Aut.", "Tritus Plag.", "Tetrardus Aut.", "Tetrardus Plag."],
+    "Nome Liturgico": ["Protus Aut.", "Protus Plag.", "Deuterus Aut.", "Deuterus Plag.", "Tritus Aut.", "Tritus Plag.", "Tetrardus Aut.", "Tetrardus Plag."],
+    "Nome Moderno": ["Dorico", "Ipodorico", "Frigio", "Ipofrigio", "Lidio", "Ipolidio", "Misolidio", "Ipomisolidio"],
     "Finalis": ["Re", "Re", "Mi", "Mi", "Fa", "Fa", "Sol", "Sol"],
     "Tenor": ["La", "Fa", "Do", "La", "Do", "La", "Re", "Do"]
 }
