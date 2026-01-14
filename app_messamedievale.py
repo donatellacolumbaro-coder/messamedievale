@@ -3,7 +3,6 @@ import streamlit as st
 import pandas as pd
 
 # 1. Configurazione obbligatoria (Deve essere la prima istruzione)
-# Rimosse emoji per compatibilità totale con i server Streamlit
 st.set_page_config(
     page_title="La Liturgia Medievale: Guida Completa",
     page_icon="S",
@@ -108,7 +107,7 @@ with st.sidebar:
         mime="text/plain"
     )
     st.divider()
-    st.caption("Versione 2.5 - Integrazione Scuole Regionali")
+    st.caption("Versione 2.6 - Rimozione video e ottimizzazione")
 
 # --- TITOLO ---
 st.title("La Liturgia e il Canto nel Medioevo")
@@ -177,7 +176,7 @@ with col_time:
     </div>
     """, unsafe_allow_html=True)
 
-    # Tabella Comparativa Scuole Regionali (Basata sull'immagine fornita)
+    # Tabella Comparativa Scuole Regionali
     st.subheader("Confronto tra Scuole Regionali di Notazione")
     scuole_df = pd.DataFrame({
         "Scuola": ["Sangallese", "Aquitana", "Beneventana", "Gotica (Hufnagel)", "Quadrata"],
@@ -211,29 +210,25 @@ with col_guido:
     </div>
     """, unsafe_allow_html=True)
 
-# --- SEZIONE 4: ESEMPIO PRATICO KYRIE ---
+# --- NUOVA SEZIONE: ESEMPIO PRATICO KYRIE ---
 st.divider()
 st.header("Esempio Pratico: Kyrie 'Orbis Factor' (Mass XI)")
-col_vid, col_txt = st.columns([1.5, 1])
 
-with col_vid:
-    st.video("https://www.youtube.com/watch?v=3RCH_G03z6M")
-    st.caption("Esecuzione del Kyrie Orbis Factor con notazione quadrata originale.")
+st.markdown("""
+<div class="tech-box">
+    <strong>Analisi Tecnica dell'Esempio:</strong><br><br>
+    Il <b>Kyrie Orbis Factor</b> è uno degli esempi più celebri di stile <i>melismatico</i> e illustra perfettamente la maturità della <b>notazione quadrata</b> su tetragramma:<br>
+    <ul>
+        <li><b>Melismi:</b> Grandi gruppi di neumi concentrati su singole sillabe (particolarmente sulla 'e' di Kyrie), che creano una linea melodica ricca e ornata.</li>
+        <li><b>Custos:</b> Il piccolo segno posto alla fine di ogni rigo che anticipa visivamente la posizione della prima nota del rigo successivo, aiutando la continuità del canto.</li>
+        <li><b>Alterazioni:</b> L'uso del <i>B-mollis</i> (il Si bemolle), l'unica alterazione ammessa nel gregoriano, indicata graficamente nel tetragramma per evitare l'intervallo di quarta eccedente (tritono).</li>
+        <li><b>Chiavi:</b> La presenza delle chiavi di DO o FA all'inizio del rigo che fissano in modo univoco l'altezza dei suoni.</li>
+        <li><b>Struttura:</b> Le barre verticali che dividono le sezioni (Kyrie, Christe, Kyrie) e indicano i momenti di pausa e respiro liturgico.</li>
+    </ul>
+</div>
+""", unsafe_allow_html=True)
 
-with col_txt:
-    st.markdown("""
-    <div class="tech-box">
-        <strong>Analisi dell'Esempio:</strong><br><br>
-        Il <b>Kyrie Orbis Factor</b> mostra la transizione alla <b>notazione quadrata</b>:<br>
-        <ul>
-            <li><b>Custos:</b> Il piccolo segno a fine rigo che anticipa la nota successiva.</li>
-            <li><b>Alterazioni:</b> Uso del <i>B-mollis</i> (si bemolle) indicato nel rigo.</li>
-            <li><b>Melismi:</b> Grandi gruppi di neumi su sillabe come la 'e' di Kyrie.</li>
-        </ul>
-    </div>
-    """, unsafe_allow_html=True)
-
-# --- SEZIONE 5: SVILUPPO DELLA POLIFONIA ---
+# --- SEZIONE 4: SVILUPPO DELLA POLIFONIA ---
 st.header("4. Lo Sviluppo della Polifonia Primitiva")
 c1, c2, c3 = st.columns(3)
 with c1:
@@ -243,7 +238,7 @@ with c2:
 with c3:
     st.markdown('<div class="poly-card"><b>Scuola di Notre Dame</b><br><br>Introduzione del ritmo misurato (Leoninus e Perotinus).</div>', unsafe_allow_html=True)
 
-# --- SEZIONE 6: INTEGRAZIONE DEL PROFANO ---
+# --- SEZIONE 5: INTEGRAZIONE DEL PROFANO ---
 st.header("5. Il Sacro e il Profano: Chansons e Messe")
 col_p1, col_p2 = st.columns([2, 1])
 
@@ -254,7 +249,7 @@ with col_p1:
 with col_p2:
     st.markdown('<div class="tech-box"><b>Cantus Firmus</b>: Melodia profana <b>fissata</b> nel <b>Tenor</b> a note lunghe.</div>', unsafe_allow_html=True)
 
-# --- SEZIONE 7: I GRANDI MAESTRI ---
+# --- SEZIONE 6: I GRANDI MAESTRI ---
 st.header("6. I Maestri della Messa Ciclica")
 st.markdown("""
 <div class="dark-section">
@@ -266,7 +261,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# --- SEZIONE 8: MODI GREGORIANI ---
+# --- SEZIONE 7: MODI GREGORIANI ---
 st.header("7. Il Sistema dell'Octoechos (8 Modi)")
 modi_data = {
     "N.": [1, 2, 3, 4, 5, 6, 7, 8],
